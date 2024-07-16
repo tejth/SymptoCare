@@ -1,5 +1,6 @@
 ﻿# SymptoCare Medical-Recommendation-System
- <video src="SymptoCare - Google Chrome 2024-07-16 12-18-00.mp4" />
+ [Download the video](./path/to/SymptoCare%20-%20Google%20Chrome%202024-07-16%2012-18-00.mp4)
+
  
 
  ## Intro
