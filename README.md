@@ -1,8 +1,8 @@
 ﻿# SymptoCare Medical-Recommendation-System
- [Download the video](./path/to/SymptoCare%20-%20Google%20Chrome%202024-07-16%2012-18-00.mp4)
+       
+https://github.com/user-attachments/assets/feedd5e6-34cf-46bd-8971-fc5343dfafd7
 
- 
-
+       
  ## Intro
  <p>Medical Recommendation Tool provides accurate information about medicines and necessary precautions based on the symptoms you enter. By utilizing advanced Machine Learning algorithms, this tool ensures reliable results tailored to your inputs.</p>
 
