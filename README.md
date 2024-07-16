@@ -10,6 +10,7 @@
  3. Scikit-learn to create and find best M.L model to predict disease.
  4. HTML,BOOTSTRAP and CSS to create Frontend
  5. Flask to connect frontend and Backend.
+ 6. Various Datasets from Kaggle.
 
 ## Features
 <ul>
