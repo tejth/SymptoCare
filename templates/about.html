@@ -3,16 +3,481 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>about</title>
+    <title>About - Medical Recommendation Tool</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <style>
+      body {
+        background-color: #343a40;
+        color: #f8f9fa;
+        font-family: "Arial", sans-serif;
+      }
+      .container {
+        margin-top: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        background: #495057;
+        padding: 20px;
+      }
+      h1 {
+        color: #007bff;
+        animation: fadeIn 1s;
+      }
+      h2 {
+        color: #80d6ff;
+        margin-top: 20px;
+        transition: color 0.3s;
+      }
+      h2:hover {
+        color: #3bc0ff;
+      }
+      .symptom-list,
+      .disease-list {
+        margin-top: 20px;
+        display: none;
+        animation: slideIn 0.5s forwards;
+        opacity: 0;
+      }
+      .symptom-list td,
+      .disease-list td {
+        padding: 10px;
+        transition: background 0.3s;
+      }
+      .symptom-list td:hover,
+      .disease-list td:hover {
+        background-color: #6c757d;
+      }
+      .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.9em;
+        color: #adb5bd;
+      }
+      .btn-home {
+        margin-top: 20px;
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      .btn-home:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+      .btn-toggle {
+        margin-top: 20px;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
+    <script>
+      function toggleDetails() {
+        const diseaseList = document.getElementById("diseaseList");
+        const symptomList = document.getElementById("symptomList");
+        const button = document.getElementById("viewMoreButton");
+        const allDiseases = document.querySelectorAll(".disease-list tr");
+        const allSymptoms = document.querySelectorAll(".symptom-list tr");
+
+        let showAll = button.innerText === "View More";
+
+        allDiseases.forEach((row, index) => {
+          if (showAll || index < 5) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+
+        allSymptoms.forEach((row, index) => {
+          if (showAll || index < 5) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+
+        button.innerText = showAll ? "View Less" : "View More";
+      }
+
+      window.onload = function () {
+        const allDiseases = document.querySelectorAll(".disease-list tr");
+        const allSymptoms = document.querySelectorAll(".symptom-list tr");
+
+        // Initially hide all but the first 5 records
+        allDiseases.forEach((row, index) => {
+          if (index >= 5) row.style.display = "none";
+        });
+        allSymptoms.forEach((row, index) => {
+          if (index >= 5) row.style.display = "none";
+        });
+
+        // Show the lists when the page loads
+        document.getElementById("diseaseList").style.display =
+          "table-row-group";
+        document.getElementById("symptomList").style.display =
+          "table-row-group";
+      };
+    </script>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+      <h1>About the Medical Recommendation Tool</h1>
+      <p class="lead">
+        Our Medical Recommendation Tool provides accurate information about
+        medicines and necessary precautions based on the symptoms you enter. By
+        utilizing advanced Machine Learning algorithms, this tool ensures
+        reliable results tailored to your inputs.
+      </p>
+
+      <h2>How It Works</h2>
+      <p>
+        Simply input your symptoms, and the tool will analyze them to recommend
+        appropriate medical actions and precautions. It’s a user-friendly
+        approach to managing your health effectively.
+      </p>
+
+      <h2>Symptoms You Can Enter</h2>
+      <table class="table table-bordered symptom-list" id="symptomList">
+        <thead class="table-primary">
+          <tr>
+            <th>Symptom (English)</th>
+            <th>Symptom (Hindi)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Itching</td>
+            <td>खुजली</td>
+          </tr>
+          <tr>
+            <td>Skin Rash</td>
+            <td>त्वचा की रेशेस</td>
+          </tr>
+          <tr>
+            <td>Joint Pain</td>
+            <td>जोड़ों में दर्द</td>
+          </tr>
+          <tr>
+            <td>Stomach Pain</td>
+            <td>पेट दर्द</td>
+          </tr>
+          <tr>
+            <td>Cough</td>
+            <td>खांसी</td>
+          </tr>
+          <tr style="display: none">
+            <td>Fever</td>
+            <td>बुखार</td>
+          </tr>
+          <tr style="display: none">
+            <td>Fatigue</td>
+            <td>थकान</td>
+          </tr>
+          <tr style="display: none">
+            <td>Vomiting</td>
+            <td>उल्टी</td>
+          </tr>
+          <tr style="display: none">
+            <td>Weight Loss</td>
+            <td>वजन घटना</td>
+          </tr>
+          <tr style="display: none">
+            <td>Anxiety</td>
+            <td>चिंता</td>
+          </tr>
+          <tr style="display: none">
+            <td>Back Pain</td>
+            <td>पीठ दर्द</td>
+          </tr>
+          <tr style="display: none">
+            <td>Dizziness</td>
+            <td>चक्कर आना</td>
+          </tr>
+          <tr style="display: none">
+            <td>Shortness of Breath</td>
+            <td>सांस फूलना</td>
+          </tr>
+          <tr style="display: none">
+            <td>Dark Urine</td>
+            <td>गहरे रंग का पेशाब</td>
+          </tr>
+          <tr style="display: none">
+            <td>Swelling of Stomach</td>
+            <td>पेट में सूजन</td>
+          </tr>
+          <tr style="display: none">
+            <td>Mood Swings</td>
+            <td>मूड स्विंग्स</td>
+          </tr>
+          <tr style="display: none">
+            <td>Nausea</td>
+            <td>मतली</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Common Diseases and Their Descriptions</h2>
+      <table class="table table-bordered disease-list" id="diseaseList">
+        <thead class="table-primary">
+          <tr>
+            <th>Disease (English)</th>
+            <th>Disease (Hindi)</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fungal Infection</td>
+            <td>फंगल संक्रमण</td>
+            <td>Infections caused by fungi affecting skin or other tissues.</td>
+          </tr>
+          <tr>
+            <td>Allergy</td>
+            <td>एलर्जी</td>
+            <td>Hypersensitivity to substances causing reactions.</td>
+          </tr>
+          <tr>
+            <td>GERD</td>
+            <td>गैस्ट्रोesophageal रिफ्लक्स रोग</td>
+            <td>Acid reflux causing heartburn and indigestion.</td>
+          </tr>
+          <tr>
+            <td>Chronic Cholestasis</td>
+            <td>क्रोनिक कोलेस्टेसिस</td>
+            <td>Impaired bile flow leading to jaundice.</td>
+          </tr>
+          <tr>
+            <td>Drug Reaction</td>
+            <td>दवा प्रतिक्रिया</td>
+            <td>Adverse effects from medications.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Peptic Ulcer Disease</td>
+            <td>पेप्टिक अल्सर रोग</td>
+            <td>Ulcers forming in the stomach or intestinal lining.</td>
+          </tr>
+          <tr style="display: none">
+            <td>AIDS</td>
+            <td>एड्स</td>
+            <td>A severe immunodeficiency syndrome caused by HIV.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Diabetes</td>
+            <td>डायबिटीज</td>
+            <td>A metabolic disorder affecting blood sugar levels.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Gastroenteritis</td>
+            <td>गैस्ट्रोएंटराइटिस</td>
+            <td>Inflammation of the stomach and intestines.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Bronchial Asthma</td>
+            <td>ब्रोंचियल अस्थमा</td>
+            <td>Chronic lung condition causing breathing difficulties.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hypertension</td>
+            <td>हाई ब्लड प्रेशर</td>
+            <td>High blood pressure increasing health risks.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Migraine</td>
+            <td>माइग्रेन</td>
+            <td>Severe headache often accompanied by nausea.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Cervical Spondylosis</td>
+            <td>गर्दन का स्पॉन्डिलाइटिस</td>
+            <td>Deterioration of the cervical spine leading to pain.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Paralysis</td>
+            <td>अल्सर</td>
+            <td>Loss of muscle function in part of the body.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Jaundice</td>
+            <td>पीलिया</td>
+            <td>Yellowing of skin due to liver issues.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Malaria</td>
+            <td>मलेरिया</td>
+            <td>Vector-borne disease caused by parasites.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Chicken Pox</td>
+            <td>चिकनपॉक्स</td>
+            <td>Highly contagious viral infection causing rash.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Dengue</td>
+            <td>डेंगू</td>
+            <td>Viral infection spread by mosquitoes, causing high fever.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Typhoid</td>
+            <td>टायफाइड</td>
+            <td>Serious bacterial infection from contaminated food/water.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hepatitis A</td>
+            <td>हेपेटाइटिस ए</td>
+            <td>Viral liver infection from contaminated food/water.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hepatitis B</td>
+            <td>हेपेटाइटिस बी</td>
+            <td>Serious liver infection transmitted through bodily fluids.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hepatitis C</td>
+            <td>हेपेटाइटिस सी</td>
+            <td>Viral liver infection primarily spread through blood.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hepatitis D</td>
+            <td>हेपेटाइटिस डी</td>
+            <td>
+              Infection caused by Hepatitis D virus only in those infected with
+              Hepatitis B.
+            </td>
+          </tr>
+          <tr style="display: none">
+            <td>Hepatitis E</td>
+            <td>हेपेटाइटिस ई</td>
+            <td>
+              Viral infection primarily transmitted through contaminated water.
+            </td>
+          </tr>
+          <tr style="display: none">
+            <td>Alcoholic Hepatitis</td>
+            <td>अल्कोहलिक हेपेटाइटिस</td>
+            <td>
+              Inflammation of the liver due to excessive alcohol consumption.
+            </td>
+          </tr>
+          <tr style="display: none">
+            <td>Tuberculosis</td>
+            <td>टीबी</td>
+            <td>Serious infectious disease that mainly affects the lungs.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Common Cold</td>
+            <td>सामान्य जुकाम</td>
+            <td>Viral infection causing nasal congestion and cough.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Pneumonia</td>
+            <td>निमोनिया</td>
+            <td>Lung infection causing difficulty in breathing.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Dimorphic Hemorrhoids</td>
+            <td>डायमॉर्फिक हेमोरॉयड्स</td>
+            <td>Swollen veins in the lower rectum and anus.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Heart Attack</td>
+            <td>दिल का दौरा</td>
+            <td>Serious condition where blood flow to the heart is blocked.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Varicose Veins</td>
+            <td>वेरिकोज़ वेन्स</td>
+            <td>Swollen and twisted veins that often occur in the legs.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hypothyroidism</td>
+            <td>हाइपोथायरायडिज़्म</td>
+            <td>Underactive thyroid leading to low hormone levels.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hyperthyroidism</td>
+            <td>हाइपरथायरायडिज़्म</td>
+            <td>Overactive thyroid producing excess hormones.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Hypoglycemia</td>
+            <td>हाइपोग्लाइसीमिया</td>
+            <td>Low blood sugar levels causing various symptoms.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Osteoarthritis</td>
+            <td>ऑस्टियोआर्थराइटिस</td>
+            <td>Degenerative joint disease leading to pain and stiffness.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Arthritis</td>
+            <td>अर्थराइटिस</td>
+            <td>Inflammation of joints causing pain and stiffness.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Vertigo</td>
+            <td>चक्कर आना</td>
+            <td>Sensation of spinning or dizziness.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Acne</td>
+            <td>एक्ने</td>
+            <td>
+              Skin condition that occurs when hair follicles become clogged.
+            </td>
+          </tr>
+          <tr style="display: none">
+            <td>Urinary Tract Infection</td>
+            <td>मूत्र पथ संक्रमण</td>
+            <td>Infection affecting the urinary system.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Psoriasis</td>
+            <td>सोरोयसिस</td>
+            <td>Chronic skin disease causing red, itchy, scaly patches.</td>
+          </tr>
+          <tr style="display: none">
+            <td>Impetigo</td>
+            <td>इम्पेटिगो</td>
+            <td>Highly contagious bacterial skin infection.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button
+        class="btn btn-primary btn-toggle"
+        id="viewMoreButton"
+        onclick="toggleDetails()"
+      >
+        View More
+      </button>
+
+      <div class="footer">
+        <div class="footer">
+          <a href="{{ url_for('home') }}" class="btn btn-home"
+            >Go to Home Page</a
+          >
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
