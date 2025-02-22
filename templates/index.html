@@ -339,6 +339,49 @@
     </div>
 
     <script>
+  const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+  const transcriptionOutput = document.getElementById('transcription');
+  const symptomsInput = document.getElementById('symptoms');
+
+  // Initialize speech recognition (Web Speech API)
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'en-US';  // Set the language for speech recognition
+  recognition.continuous = true;  // Keep listening for speech until the user stops
+  recognition.interimResults = true;  // Get intermediate results as the user speaks
+
+  // Event when speech recognition returns a result
+  recognition.onresult = function(event) {
+    let transcript = '';
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      transcript += event.results[i][0].transcript;
+    }
+    
+    // Update the transcription text
+    transcriptionOutput.innerText = transcript;
+
+    // Update the input field with the recognized speech
+    symptomsInput.value = transcript;
+  };
+
+  // Start speech recognition when the button is clicked
+  startSpeechRecognitionButton.onclick = function() {
+    recognition.start();
+  };
+
+  // Optional: Handle errors
+  recognition.onerror = function(event) {
+    console.error("Speech recognition error: ", event.error);
+    transcriptionOutput.innerText = "Sorry, there was an error with speech recognition.";
+  };
+
+  // Optional: Handle when the recognition ends
+  recognition.onend = function() {
+    console.log("Speech recognition ended.");
+  };
+</script>
+
+
+    <script>
         window.onload = function() {
             setTimeout(function() {
                 document.getElementById('notification').style.display = 'none';
